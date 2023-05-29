@@ -39,7 +39,7 @@ export default function Calculator(stack: number[], tokenArr: string[]): number[
         console.log(
           colors.red(
             errorMessage(
-              `Error: Insufficient amount of numbers in the stack. The stack has been cleared.`
+              `Insufficient amount of numbers in the stack. The stack has been cleared.`
             )
           )
         );
