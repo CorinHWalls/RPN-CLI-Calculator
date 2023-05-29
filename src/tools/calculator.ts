@@ -2,6 +2,19 @@ import errorMessage from "./errorMessage";
 import  { OPERATORS, isOperator } from "./operations";
 import colors from "colors";
 
+/*
+Visual example: 5 3 4 + *
+
+Here's how the RPN calculator would handle this:
+
+1. Push 5 onto the stack. (stack: 5)
+2. Push 3 onto the stack. (stack: 5 3)
+3. Push 4 onto the stack. (stack: 5 3 4)
+4. Encounter +, so pop 4 and 3, add them to get 7, and push 7 back onto the stack. (stack: 5 7)
+5. Encounter *, so pop 7 and 5, multiply them to get 35, and push 35 back onto the stack. (stack: 35)
+6. Reach the end of the input, so 35 is the final result.
+*/
+
 /**
  * Stacks numbers into the passed stack array and performs the calculation. 
  * The token array must be validated beforehand. Returns the stack.
@@ -62,16 +75,3 @@ export default function Calculator(stack: number[], tokenArr: string[]): number[
   return !isError ? stack : [];
 }
 
-
-/*
-Let's take an example: 5 3 4 + *
-
-Here's how the RPN calculator would handle this:
-
-1. Push 5 onto the stack. (stack: 5)
-2. Push 3 onto the stack. (stack: 5 3)
-3. Push 4 onto the stack. (stack: 5 3 4)
-4. Encounter +, so pop 4 and 3, add them to get 7, and push 7 back onto the stack. (stack: 5 7)
-5. Encounter *, so pop 7 and 5, multiply them to get 35, and push 35 back onto the stack. (stack: 35)
-6. Reach the end of the input, so 35 is the final result.
-*/

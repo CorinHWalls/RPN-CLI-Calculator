@@ -8,7 +8,7 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true
   },
-  "include": ["src/**/*", "test/rpnCalculator.test.ts"],
+  "include": ["src/**/*", "test/calculator.test.ts"],
   "exclude": ["node_modules", "**/*.spec.ts"],
   "$schema": "https://json.schemastore.org/tsconfig",
   "display": "Recommended"
