@@ -1,65 +1,63 @@
-// Import readline for reading from standard input and writing to standard output.
-import readline from 'readline';
-// Import the defined operations and the isOperator function.
-import { OPERATORS, isOperator } from './operations';
+import errorMessage from "./errorMessage";
+import  { OPERATORS, isOperator } from "./operations";
+import colors from "colors";
 
-// Create a readline.Interface instance.
-// This will allow us to read from the standard input and write to the standard output.
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout
-});
+/**
+ * Stacks numbers into the passed stack array and performs the calculation. 
+ * The token array must be validated beforehand. Returns the stack.
+ * @param {number[]} stack - The stack to which numbers will be added.
+ * @param {string[]} tokenArr - The array of tokens to be processed.
+ * @returns {number[]} The updated stack after performing operations or an empty array in case of errors.
+ */
+export default function Calculator(stack: number[], tokenArr: string[]): number[] {
+  let isError = false; // Flag to indicate if there has been an error during the operation.
 
-// Listen to the 'line' event, which is emitted whenever a new line is received from the input.
-rl.on('line', (input) => {
-  // If the input is 'q', then close the readline interface and exit the program.
-  if (input.toLowerCase() === 'q') {
-    rl.close();
-    process.exit(0);
-  }
+  // Iterate through the tokens in the array.
+  tokenArr.forEach((item: string) => {
+    // If the current token is an operator, perform the operation.
+    if (isOperator(item)) {
+      // Pop the last two numbers from the stack.
+      const lastNumber = stack.pop();
+      const secondLastNumber = stack.pop();
 
-  // Split the input into tokens.
-  const tokens = input.split(' ');
-  // If the number of tokens isn't 3, then this isn't a valid command.
-  if (tokens.length !== 3) {
-    console.log('Invalid input. Please input in the following format: number operator number');
-    return;
-  }
+      // If there aren't enough numbers on the stack, print an error message and set the error flag.
+      if (lastNumber === undefined || secondLastNumber === undefined) {
+        console.log(
+          colors.red(
+            errorMessage(
+              `Invalid Operation. Not enough numbers in stack, stack cleared`
+            )
+          )
+        );
+        isError = true;
+        return;
+      }
 
-  // Destructure the tokens into the operands and the operator.
-  const [xStr, operator, yStr] = tokens;
+      // If division by zero is attempted, print an error message and set the error flag.
+      if (item === '/' && lastNumber === 0) {
+        console.log(colors.red(errorMessage(`Invalid Operation. Division by zero, stack cleared`)));
+        isError = true;
+        return;
+      }
 
-  // Convert the operands to floating point numbers.
-  const x = parseFloat(xStr);
-  const y = parseFloat(yStr);
+      // Perform the operation and push the result back onto the stack.
+      const result = OPERATORS[item](secondLastNumber, lastNumber);
 
-  // Check if the operands are valid numbers.
-  if (Number.isNaN(x) || Number.isNaN(y)) {
-    console.log('Invalid numbers provided.');
-    return;
-  }
+      // If the result is not a number (due to some error), print an error message and set the error flag.
+      if (isNaN(result)) {
+        console.log(colors.red(errorMessage(`Invalid Operation. Division by zero, stack cleared`)));
+        isError = true;
+        return;
+      }
 
-  // Check if the operator is valid.
-  if (!isOperator(operator)) {
-    console.log(`Invalid operator. Available operators are: ${Object.keys(OPERATORS).join(', ')}`);
-    return;
-  }
+      // Push the result back to the stack.
+      stack.push(result);
+    } else {
+      // If the current token is a number, push it onto the stack.
+      stack.push(Number(item));
+    }
+  });
 
-  // Get the operation function corresponding to the operator.
-  const operation = OPERATORS[operator];
-
-  try {
-    // Perform the operation and print the result.
-    const result = operation(x, y);
-    console.log(result);
-  } catch (error) {
-    // If there was an error (such as a division by zero), then print the error message.
-    console.error(error.message);
-  }
-});
-
-// Listen to the 'close' event, which is emitted when the readline interface is closed.
-// When this event is emitted, we should exit the program.
-rl.on('close', () => {
-  process.exit(0);
-});
+  // If there was an error, return an empty array. Otherwise, return the updated stack.
+  return !isError ? stack : [];
+}
