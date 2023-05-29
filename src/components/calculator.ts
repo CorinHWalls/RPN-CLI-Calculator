@@ -22,6 +22,7 @@ Here's how the RPN calculator would handle this:
  * @param {string[]} tokenArr - The array of tokens to be processed.
  * @returns {number[]} The updated stack after performing operations or an empty array in case of errors.
  */
+
 export default function Calculator(stack: number[], tokenArr: string[]): number[] {
   let isError = false; // Flag to indicate if there has been an error during the operation.
 
@@ -38,7 +39,7 @@ export default function Calculator(stack: number[], tokenArr: string[]): number[
         console.log(
           colors.red(
             errorMessage(
-              `Invalid Operation. Not enough numbers in stack, stack cleared`
+              `Error: Insufficient amount of numbers in the stack. The stack has been cleared.`
             )
           )
         );
@@ -48,7 +49,7 @@ export default function Calculator(stack: number[], tokenArr: string[]): number[
 
       // If division by zero is attempted, print an error message and set the error flag.
       if (item === '/' && lastNumber === 0) {
-        console.log(colors.red(errorMessage(`Invalid Operation. Division by zero, stack cleared`)));
+        console.log(colors.red(errorMessage(`Division by zero is not allowed. The operation cannot be performed. The stack has been cleared.`)));
         isError = true;
         return;
       }
@@ -58,7 +59,7 @@ export default function Calculator(stack: number[], tokenArr: string[]): number[
 
       // If the result is not a number (due to some error), print an error message and set the error flag.
       if (isNaN(result)) {
-        console.log(colors.red(errorMessage(`Invalid Operation. Division by zero, stack cleared`)));
+        console.log(colors.red(errorMessage(`Invalid operation. The operation cannot be performed. The stack has been cleared.`)));
         isError = true;
         return;
       }
