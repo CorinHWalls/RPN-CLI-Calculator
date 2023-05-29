@@ -1,6 +1,6 @@
 import { errorMessage } from "../components";
 import { isValidNumber } from '../validators';
-import {isOperator} from "../components/operations";
+import { isOperator } from "../components";
 import colors from "colors";
 
 /**

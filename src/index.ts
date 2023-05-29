@@ -1,9 +1,7 @@
 import * as readline from "node:readline";
-import Calculator from "./components/calculator";
-import operationCheck from "./validators/operationCheck";
+import {Calculator} from "./components";
 import { helperMessage } from "./components";
-
-
+import { isOperationValid } from "./validators";
 import colors from "colors";
 
 // This Readline interface is an instance of EventEmitter 
@@ -85,7 +83,7 @@ function handleUserInput(input: string) {
   const filteredInput = input.split(" ").filter((item) => item !== "");
 
   // Check if the operation is valid.
-  const _isOperationValid = operationCheck(filteredInput);
+  const _isOperationValid = isOperationValid(filteredInput);
   if (!_isOperationValid) {
     return;
   }
