@@ -4,8 +4,8 @@
   "description": "A basic command-line reverse polish notation (RPN) calculator",
   "main": "index.ts",
   "scripts": {
-    "start": "tsc && node dist/index.js",
-    "test":"mocha --require ts-node/register --require source-map-support/register --recursive 'test/**/*.test.ts'"
+    "start": "tsc && node dist/src/index.js",
+    "test": "mocha --require ts-node/register --require source-map-support/register --recursive 'test/**/*.test.ts'"
   },
   "keywords": [],
   "author": "",
