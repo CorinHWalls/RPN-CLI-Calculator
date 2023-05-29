@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "target": "ES2015",
+    "module": "commonjs",
+    "outDir": "./dist",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": ["src/**/*", "test/rpnCalculator.test.ts"],
+  "exclude": ["node_modules", "**/*.spec.ts"],
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "display": "Recommended"
+}
