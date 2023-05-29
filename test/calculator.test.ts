@@ -26,6 +26,31 @@ describe('RPN Calculator', () => {
     expect(result.length).to.equal(0);
   });
 
+  // Test case 4
+  it('should calculate "6 7 88 9 - + 0 - *" correctly', () => {
+    const stack: number[] = [];
+    const tokens: string[] = ['6', '7', '88', '9', '-', '+', '0', '-', '*'];
+    const result = Calculator(stack, tokens);
+    expect(result[0]).to.equal(516);
+  });
+
+  // Test case 5
+  it('should calculate "5 5 5 8 + + -" properly', () => {
+    const stack: number[] = [];
+    const tokens: string[] = ['5', '5', '5', '8', '+', '+', '-'];
+    const result = Calculator(stack, tokens);
+    expect(result[0]).to.equal(-13);
+  });
+
+  // Test case 6
+  it('should calculate "5 9 1 - /" properly', () => {
+    const stack: number[] = [];
+    const tokens: string[] = ['5', '9', '1', '-', '/'];
+    const result = Calculator(stack, tokens);
+    expect(result[0]).to.equal(0.625);
+  });
+
   // Add more test cases here...
 });
+
 
