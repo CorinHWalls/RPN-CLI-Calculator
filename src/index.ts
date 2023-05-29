@@ -1,7 +1,9 @@
 import * as readline from "node:readline";
-import Calculator from "./tools/calculator";
-import operationCheck from "./tools/operationCheck";
-import helperMessage from "./tools/helperMessage";
+import Calculator from "./components/calculator";
+import operationCheck from "./validators/operationCheck";
+import { helperMessage } from "./components";
+
+
 import colors from "colors";
 
 // This Readline interface is an instance of EventEmitter 

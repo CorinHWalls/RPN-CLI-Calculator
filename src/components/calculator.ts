@@ -1,4 +1,4 @@
-import errorMessage from "./errorMessage";
+import {errorMessage} from "./messages";
 import  { OPERATORS, isOperator } from "./operations";
 import colors from "colors";
 

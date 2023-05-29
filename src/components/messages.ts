@@ -1,11 +1,20 @@
 /**
+ * Standard error message. Takes in the error message and returns a standardized error string.
+ * @param {string} err
+ * @returns {string}
+ */
+export function errorMessage(err: string): string {
+  return `Error: ${err}. Type '-help' for more information or try again.`;
+}
+
+/**
  * Generates a helper message for the RPN calculator application.
  * The helper message contains instructions on how to use the calculator, 
  * explanations of the available options and commands, as well as some examples.
  * This message can be displayed when the user types '-help' or '-h'.
  * @returns {string} A string containing the helper message.
  */
-export default function helperMessage(): string {
+export function helperMessage(): string {
   return `
 -----------------** RPN Calculator **----------------
 Usage:

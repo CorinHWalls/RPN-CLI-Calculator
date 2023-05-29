@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import Calculator from '../src/tools/calculator';
+import Calculator from '../src/components/calculator';
 
 describe('RPN Calculator', () => {
   // Test case 1
