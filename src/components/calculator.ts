@@ -26,16 +26,14 @@ Here's how the RPN calculator would handle this:
 export default function Calculator(stack: number[], tokenArr: string[]): number[] {
   let isError = false; // Flag to indicate if there has been an error during the operation.
 
-  // Iterate through the tokens in the array.
-  tokenArr.forEach((item: string) => {
-    // If the current token is an operator, perform the operation.
+  // Iterate through each token in the tokenArr array.
+  for (const item of tokenArr) {
     if (isOperator(item)) {
-      // Pop the last two numbers from the stack.
-      const lastNumber = stack.pop();
-      const secondLastNumber = stack.pop();
+      const lastNumber = stack.pop(); // Pop the last number from the stack.
+      const secondLastNumber = stack.pop(); // Pop the second-last number from the stack.
 
-      // If there aren't enough numbers on the stack, print an error message and set the error flag.
       if (lastNumber === undefined || secondLastNumber === undefined) {
+        // If there aren't enough numbers on the stack, print an error message and set the isError flag to true.
         console.log(
           colors.red(
             errorMessage(
@@ -44,35 +42,38 @@ export default function Calculator(stack: number[], tokenArr: string[]): number[
           )
         );
         isError = true;
-        return;
+        break; // Exit the loop since the operation cannot be performed.
       }
 
-      // If division by zero is attempted, print an error message and set the error flag.
       if (item === '/' && lastNumber === 0) {
+        // If division by zero is attempted, print an error message and set the isError flag to true.
         console.log(colors.red(errorMessage(`Division by zero is not allowed. The operation cannot be performed. The stack has been cleared.`)));
         isError = true;
-        return;
+        break; // Exit the loop since the operation cannot be performed.
       }
 
-      // Perform the operation and push the result back onto the stack.
+      // Perform the operation using the appropriate operator and the two numbers from the stack.
       const result = OPERATORS[item](secondLastNumber, lastNumber);
 
-      // If the result is not a number (due to some error), print an error message and set the error flag.
       if (isNaN(result)) {
+        // If the result is not a number, print an error message and set the isError flag to true.
         console.log(colors.red(errorMessage(`Invalid operation. The operation cannot be performed. The stack has been cleared.`)));
         isError = true;
-        return;
+        break; // Exit the loop since the operation cannot be performed.
       }
 
-      // Push the result back to the stack.
+      // Push the result back onto the stack.
       stack.push(result);
     } else {
-      // If the current token is a number, push it onto the stack.
+      // If the current token is a number, convert it to a number type and push it onto the stack.
       stack.push(Number(item));
     }
-  });
+  }
 
-  // If there was an error, return an empty array. Otherwise, return the updated stack.
-  return !isError ? stack : [];
+  // If there was an error during the operation, return an empty array.
+  // Otherwise, return the updated stack.
+  return isError ? [] : stack;
 }
+
+
 
