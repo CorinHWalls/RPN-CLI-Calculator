@@ -8,6 +8,7 @@ import { errorMessage, isOperator } from "../components";
  * - Having valid characters (numbers or operators)
  * - Being a single-line operation
  * - Having the correct number-operator sequence
+ * 
  * It validates operations before further processing or evaluation.
  * @param {string[]} value - The string to be checked.
  * @returns {boolean} - Indicates if the operation is valid.

@@ -11,7 +11,7 @@ const rl = readline.createInterface({
   output: process.stdout,
 });
 
-// numberStack is a stack of numbers where will be pushing the numbers inputted by the user.
+// numberStack is a empty array used to store the numbers inputted by the user.
 let numberStack: number[] = [];
 
 // These flags control whether the calculator should show the stack and decimal numbers.
