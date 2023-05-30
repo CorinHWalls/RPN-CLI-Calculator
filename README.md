@@ -16,7 +16,7 @@ To run the CLI RPN Calculator, follow these steps:
 
 - Ensure you have Node.js (version 14 or higher) and npm installed on your machine.
 - Clone the repository: git clone `https://github.com/CorinHWalls/RPN-CLI-Calculator.git`
-- Navigate to the project directory: `cd rpn-cli-calc`
+- Navigate to the project directory: `cd RPN-CLI-calculator`
 - Install the dependencies: `npm install`
 - Run the calculator: `npm run start`
 - Enter your RPN expressions at the prompt and press Enter to see the result. Type `q` or use `Ctrl+D` (EOF) to exit the calculator.
@@ -25,7 +25,7 @@ To run the CLI RPN Calculator, follow these steps:
 To run the test suite for the CLI RPN Calculator, follow these steps:
 
 - Ensure you have completed the prerequisites mentioned in the "Running the Code" section
-- Navigate to the project directory: `cd rpn-cli-calc`
+- Navigate to the project directory: `cd RPN-CLI-calculator`
 - Run the tests: `npm run test`
 - To ensure accurate functionality and prevent regressions, the test suite utilizes the widely adopted `mocha` testing framework for JavaScript and TypeScript. It encompasses a range of scenarios and edge cases to thoroughly validate the calculator's performance.
 
