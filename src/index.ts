@@ -25,7 +25,7 @@ function handleHelp() {
 
 // When the user wants to quit the application, close the readline interface and exit the process.
 function handleQuit() {
-  console.log(colors.blue(`Thank you!`));
+  console.log(colors.blue(`RPN Calculator shutting down..`));
   rl.close();
   process.exit(0);
 }
